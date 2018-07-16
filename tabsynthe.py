@@ -14,7 +14,8 @@
 # TODO:
 # Some sort of preliminary linter to make sure the tab data isn't complete garbage?
 # No exceptions yet, so we're kind of working on the honor system.
-# Only exports to WAV right now.
+# Only exports to WAV right now. :(
+# Need a better way to determine double-digit notes or just really fast subsequent notes on the same line.
 
 import os
 import datetime
@@ -178,4 +179,15 @@ if __name__ == "__main__":
 
 	filename = args['name'] if not args['name'] == None else datetime.datetime.now().strftime("%Y_%m_%d_%H_%M_%S.wav")
 
-	song.export("output/" + filename, format="wav")
+	channel_type = args['channel_type'].lower()
+
+	if channel_type == 'mono':
+		logger.info("Exporting as mono.")
+		song.set_channels(1)
+		song.export("output/" + filename, format="wav")
+	elif channel_type == 'stereo':
+		logger.info("Exporting as stereo.")
+		song.set_channels(2)
+		song.export("output/" + filename, format="wav")
+	else:
+		logger.error("Invalid channel type provided, aborting.")
