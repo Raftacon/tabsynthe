@@ -12,6 +12,7 @@ A Python-based utility to consume a guitar tab and output a MIDI-style WAV using
 * Some sort of preliminary linter to make sure the tab data isn't complete garbage?
 * No exceptions yet, so we're kind of working on the honor system.
 * Only exports to WAV right now. :(
+* Need a better way to determine double-digit notes or just really fast subsequent notes on the same line.
 
 # Sample Input
 ```
